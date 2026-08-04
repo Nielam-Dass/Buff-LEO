@@ -1,3 +1,6 @@
+import * as actions from "./actions"
+
+
 type ShortcutToActionMapping = {
     checkKeydownEvent(event: KeyboardEvent): boolean,
     action(...args: any[]): any
@@ -6,11 +9,11 @@ type ShortcutToActionMapping = {
 const bindings: ShortcutToActionMapping[] = [
     {
         checkKeydownEvent: event => event.ctrlKey && event.shiftKey && event.code==="Digit1",
-        action: () => console.log("Control Shift 1 pressed!")
+        action: actions.activatePen
     },
     {
         checkKeydownEvent: event => event.ctrlKey && event.shiftKey && event.code==="Digit2",
-        action: () => console.log("Control Shift 2 pressed!")
+        action: actions.activateEraser
     },
 ]
 
