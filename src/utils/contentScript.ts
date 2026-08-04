@@ -1,5 +1,7 @@
-document.addEventListener("keydown", (e: KeyboardEvent): void => {
-    if (e.ctrlKey && e.shiftKey && e.code==="Digit1") {
-        console.log("Ctrl + Shift + 1 Pressed!!!")
-    }
-})
+import bindings from "./keyBindings"
+
+for (const binding of bindings) {
+    document.addEventListener("keydown", (e: KeyboardEvent): void => {
+        if (binding.checkKeydownEvent(e)) binding.action()
+    })
+}
