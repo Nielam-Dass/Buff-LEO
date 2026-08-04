@@ -8,4 +8,15 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
+  build: {
+    rolldownOptions: {
+      input: {
+        index: "index.html",
+        contentScript: "src/utils/contentScript.ts"
+      },
+      output: {
+        entryFileNames: "assets/[name].js"
+      }
+    }
+  }
 })

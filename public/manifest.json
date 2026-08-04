@@ -4,5 +4,11 @@
     "version": "0.0.1",
     "action": {
         "default_popup": "index.html"
-    }
+    },
+    "content_scripts": [
+        {
+            "js": ["/assets/contentScript.js"],
+            "matches": ["https://*/*"]
+        }
+    ]
 }
