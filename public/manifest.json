@@ -8,7 +8,8 @@
     "content_scripts": [
         {
             "js": ["/assets/contentScript.js"],
-            "matches": ["https://*/*"]
+            "matches": ["<all_urls>"],
+            "all_frames": true
         }
     ]
 }
