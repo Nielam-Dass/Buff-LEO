@@ -1,5 +1,12 @@
+const blockHrefInline = (clickEvent: MouseEvent) => {
+    if (clickEvent.target instanceof HTMLAnchorElement && clickEvent.target.href==="javascript:void(0)") {
+        clickEvent.preventDefault()
+    }
+}
+
 export const activatePen = (): void => {
     const penBtn: HTMLAnchorElement | null = document.querySelector<HTMLAnchorElement>("#toolConfigurationContainer > ul a[title='Pen']")
+    penBtn?.addEventListener("click", blockHrefInline)
     penBtn?.click()
 }
 
