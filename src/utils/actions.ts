@@ -1,5 +1,6 @@
 export const activatePen = (): void => {
-    console.log("Pen is active")
+    const penBtn: HTMLAnchorElement | null = document.querySelector<HTMLAnchorElement>("#toolConfigurationContainer > ul a[title='Pen']")
+    penBtn?.click()
 }
 
 export const activateEraser = (): void => {
