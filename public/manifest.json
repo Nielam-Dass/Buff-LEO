@@ -15,7 +15,7 @@
     "content_scripts": [
         {
             "js": ["/assets/contentScript.js"],
-            "matches": ["<all_urls>"],
+            "matches": ["https://leo.tutor.com/*", "https://v2.tutor.com/*"],
             "all_frames": true
         }
     ]
