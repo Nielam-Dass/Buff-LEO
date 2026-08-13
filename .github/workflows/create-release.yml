@@ -1,0 +1,65 @@
+name: "Create Release"
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+?(-?*)"
+
+
+jobs:
+  release:
+    if: github.actor == github.repository_owner
+    runs-on: unbuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      
+      - name: Validate version numbers
+        run: |
+          PACKAGE_VERSION=$(jq -r ".version" package.json)
+          MANIFEST_VERSION=$(jq -r ".version" ./public/manifest.json)
+          if [[ "${{ github.ref_name }}" != "v$PACKAGE_VERSION" || "${{ github.ref_name }}" != "v$MANIFEST_VERSION"* ]]; then
+            echo "ERROR: Version mismatch!"
+            echo "Package version: v$PACKAGE_VERSION"
+            echo "Manifest version: v$MANIFEST_VERSION"
+            echo "Tag version: ${{ github.ref_name }}"
+            exit 1
+          else
+            echo "SUCCESS: All version numbers match!"
+          fi
+      
+      # TODO: Upgrade pnpm version
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 10
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: "pnpm"
+      
+      - name: Install dependencies
+        run: pnpm ci
+
+      - name: Build project
+        run: pnpm build
+
+      - name: Create ZIP asset
+        run: zip -r buff-leo-${{ github.ref_name }}.zip dist/
+      
+      - name: Create Tar GZip asset
+        run: tar -czf buff-leo-${{ github.ref_name }}.tar.gz dist/
+
+      - name: Release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: |
+            buff-leo-${{ github.ref_name }}.zip
+            buff-leo-${{ github.ref_name }}.tar.gz
+          generate_release_notes: true
+          prerelease: ${{ startsWith(github.ref_name, 'v0.') || contains(github.ref_name, '-') }}
+ 
