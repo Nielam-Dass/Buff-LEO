@@ -15,7 +15,7 @@ function App(): JSX.Element {
         <h2 style={{marginTop: 0, marginBottom: 0}}>💪🦁</h2>
       </div>
       <hr />
-      <ShortcutList/>
+      <ShortcutList />
     </>
   )
 }

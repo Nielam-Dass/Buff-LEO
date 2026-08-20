@@ -19,7 +19,7 @@ Please read all the rules and adhere to them when contributing.
 - Only the repository owner (Nielam-Dass) can modify the `manifest.json` and workflow YML files.
 - All contributions must be in American English.
 - Source code should be written in TypeScript and documented through comments.
-- Before opening a PR, test your changes in the browser to make sure your code works as intended.
+- Before opening a PR, test your changes in the browser to make sure your code works as intended. Also, run the linter with `pnpm lint`, to check your code for errors and stylistic issues.
 - All PRs must reference an issue it is addressing. The referenced issue should be assigned to the PR author.
 - Keep changes small and focused to one specific purpose.
 - AI-assisted development is permitted, but changes should be thoroughly reviewed by a human before submission. Files meant for coding agents (e.g. `AGENTS.md` or `CLAUDE.md`) should be ignored.
