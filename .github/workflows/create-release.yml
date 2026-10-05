@@ -65,4 +65,5 @@ jobs:
             buff-leo-${{ github.ref_name }}.tar.gz
           generate_release_notes: true
           prerelease: ${{ startsWith(github.ref_name, 'v0.') || contains(github.ref_name, '-') }}
+          token: ${{ secrets.WORKFLOW_PAT }}
  
