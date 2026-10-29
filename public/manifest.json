@@ -16,7 +16,8 @@
         {
             "js": ["/assets/contentScript.js"],
             "matches": ["https://leo.tutor.com/*", "https://v2.tutor.com/*"],
-            "all_frames": true
+            "all_frames": true,
+            "match_origin_as_fallback": true
         }
     ]
 }
