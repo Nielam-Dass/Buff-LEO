@@ -30,11 +30,10 @@ jobs:
             echo "SUCCESS: All version numbers match!"
           fi
       
-      # TODO: Upgrade pnpm version
       - name: Install pnpm
         uses: pnpm/action-setup@v6
         with:
-          version: 10
+          version: 12
       
       - name: Install Node.js
         uses: actions/setup-node@v7
@@ -43,7 +42,7 @@ jobs:
           cache: "pnpm"
       
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm ci
 
       - name: Linting checks
         run: pnpm lint
