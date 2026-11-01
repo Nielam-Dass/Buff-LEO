@@ -38,6 +38,33 @@ export const activateHighlighter = (): void => {
   highlighterBtn?.click()
 }
 
+type toolColors = "black" | "red" | "green" | "blue" | "yellow"
+/**
+ * Changes the color for the pen or highlighter tool depending on which one is active
+ * 
+ * @param toolColor String to identify the color to switch to
+ */
+export const switchCurrentToolColor = (toolColor: toolColors): void => {
+  console.log(`Switching color: ${toolColor}`) // TODO: Delete log
+  // Simulate hover over tool button to reveal color configuration menu
+  const toolElement: HTMLElement | null = acquireToolBtn("Pen")?.parentElement ?? null
+  toolElement?.dispatchEvent(new MouseEvent("mouseenter"))
+  const toolConfig: HTMLElement | null = document.querySelector("#toolConfigurationContainer > ul > li > ul.configuration-data")
+  // Find the target color button and click it
+  const colorRgbCodes: Record<toolColors, string> = {
+    "black": "rgb(0, 0, 0)",
+    "red": "rgb(255, 0, 0)",
+    "green": "rgb(0, 128, 0)",
+    "blue": "rgb(0, 0, 255)",
+    "yellow": "rgb(255, 255, 0)"
+  }
+  const targetColorBtn: HTMLElement | null = toolConfig?.querySelector(`a.shape.circle[style*="${colorRgbCodes[toolColor]}"]`) ?? null
+  if (targetColorBtn) {
+    targetColorBtn.addEventListener("click", blockHrefInline) // Prevents CSP error
+    targetColorBtn.click()
+  }
+}
+
 /**
  * Find the element serving as the button for a specific whiteboard tool
  * 
