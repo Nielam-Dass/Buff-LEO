@@ -26,20 +26,23 @@ const shortcutList: {keyCombo: string, action: string}[] = [
 ]
 
 /**
- * Displays list of shortcuts available
+ * Displays list of shortcuts available for switching between whiteboard tools
  * 
  * @returns JSX element for shortcut list
  */
-function ShortcutList(): JSX.Element {
+function ToolShortcutList(): JSX.Element {
   return (
     <>
-      <ul style={{fontSize: "1.25rem"}}>
-        {shortcutList.map((shortcut, index): JSX.Element => {
-          return <li key={index} style={{paddingBottom: 4}}><b>{shortcut.keyCombo}:</b> {shortcut.action}</li>
-        })}
-      </ul>
+      <div style={{fontSize: "1.25rem", paddingLeft: 16, paddingRight: 16}}>
+        <div>Switch Tools:</div>
+        <ul style={{marginTop: 4, marginBottom: 16, paddingLeft: 24}}>
+          {shortcutList.map((shortcut, index): JSX.Element => {
+            return <li key={index} style={{paddingBottom: 4}}><b>{shortcut.keyCombo}:</b> {shortcut.action}</li>
+          })}
+        </ul>
+      </div>
     </>
   )
 }
 
-export default ShortcutList
+export default ToolShortcutList
