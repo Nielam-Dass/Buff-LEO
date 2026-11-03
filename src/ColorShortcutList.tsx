@@ -38,9 +38,9 @@ const shortcutList: {shortcutKey: string, colorName: string, colorRGBCode: strin
 function ColorShortcutList(): JSX.Element {
   return (
     <>
-      <div style={{fontSize: "1.25rem", paddingLeft: 16, paddingRight: 16}}>
+      <div className="shortcut-list-section">
         <div>Switch Colors (Pen/Highlighter):</div>
-        <ul style={{marginTop: 4, marginBottom: 16, paddingLeft: 24}}>
+        <ul className="shortcut-list">
           {shortcutList.map((shortcut, index) => {
             return <li key={index}><b>{shortcut.shortcutKey}:</b> <span style={{color: shortcut.colorRGBCode}}>⬤</span> {shortcut.colorName}</li>
           })}

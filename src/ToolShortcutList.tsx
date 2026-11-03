@@ -33,9 +33,9 @@ const shortcutList: {keyCombo: string, action: string}[] = [
 function ToolShortcutList(): JSX.Element {
   return (
     <>
-      <div style={{fontSize: "1.25rem", paddingLeft: 16, paddingRight: 16}}>
+      <div className="shortcut-list-section">
         <div>Switch Tools:</div>
-        <ul style={{marginTop: 4, marginBottom: 16, paddingLeft: 24}}>
+        <ul className="shortcut-list">
           {shortcutList.map((shortcut, index): JSX.Element => {
             return <li key={index} style={{paddingBottom: 4}}><b>{shortcut.keyCombo}:</b> {shortcut.action}</li>
           })}
