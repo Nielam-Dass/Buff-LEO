@@ -1,5 +1,6 @@
 import type { JSX } from "react/jsx-runtime"
-import ShortcutList from "./ShortcutList"
+import ToolShortcutList from "./ToolShortcutList"
+import ColorShortcutList from "./ColorShortcutList"
 
 
 /**
@@ -14,8 +15,9 @@ function App(): JSX.Element {
         <h1 style={{marginTop: 0, marginBottom: 0}}>Buff LEO</h1>
         <h2 style={{marginTop: 0, marginBottom: 0}}>💪🦁</h2>
       </div>
-      <hr />
-      <ShortcutList />
+      <hr style={{marginBottom: 16}} />
+      <ToolShortcutList />
+      <ColorShortcutList />
     </>
   )
 }

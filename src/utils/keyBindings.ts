@@ -43,6 +43,26 @@ const bindings: ShortcutToActionMapping[] = [
     checkKeydownEvent: event => event.ctrlKey && event.shiftKey && event.code === "Digit5",
     action: actions.activateHighlighter
   },
+  {
+    checkKeydownEvent: event => event.code === "KeyK",
+    action: () => actions.switchCurrentToolColor("black")
+  },
+  {
+    checkKeydownEvent: event => event.code === "KeyR",
+    action: () => actions.switchCurrentToolColor("red")
+  },
+  {
+    checkKeydownEvent: event => event.code === "KeyG",
+    action: () => actions.switchCurrentToolColor("green")
+  },
+  {
+    checkKeydownEvent: event => event.code === "KeyB",
+    action: () => actions.switchCurrentToolColor("blue")
+  },
+  {
+    checkKeydownEvent: event => event.code === "KeyY",
+    action: () => actions.switchCurrentToolColor("yellow")
+  }
 ]
 
 export default bindings

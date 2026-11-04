@@ -38,6 +38,36 @@ export const activateHighlighter = (): void => {
   highlighterBtn?.click()
 }
 
+type toolColors = "black" | "red" | "green" | "blue" | "yellow"
+/**
+ * Changes the color for the pen or highlighter tool depending on which one is active
+ * 
+ * @param toolColor String to identify the color to switch to
+ */
+export const switchCurrentToolColor = (toolColor: toolColors): void => {
+  // Find currently active tool
+  const currentTool: string | null = document.querySelector<HTMLAnchorElement>("#toolConfigurationContainer > ul a.style_Background_Selection_background")?.getAttribute("title") ?? null
+  if (!currentTool || (currentTool !== "Pen" && currentTool !== "Highlighter")) return
+  // Simulate hover over tool button to reveal color configuration menu
+  const toolElement: HTMLElement | null = acquireToolBtn(currentTool)?.parentElement ?? null
+  toolElement?.dispatchEvent(new MouseEvent("mouseenter"))
+  const toolConfig: HTMLElement | null = document.querySelector<HTMLUListElement>("#toolConfigurationContainer > ul > li > ul.configuration-data")
+  // Find the target color button and click it
+  const colorRgbCodes: Record<toolColors, string> = {
+    "black": "rgb(0, 0, 0)",
+    "red": "rgb(255, 0, 0)",
+    "green": "rgb(0, 255, 0)",
+    "blue": "rgb(0, 0, 255)",
+    "yellow": "rgb(255, 255, 0)"
+  }
+  const toolColorCode: string = currentTool === "Pen" ? colorRgbCodes[toolColor] : colorRgbCodes[toolColor].slice(0, 3) + "a" + colorRgbCodes[toolColor].slice(3, -1) + ", 0.6)" // Transform to rgba color code for highlighter
+  const targetColorBtn: HTMLElement | null = toolConfig?.querySelector<HTMLAnchorElement>(`a.shape.circle[style*="${toolColorCode}"]`) ?? null
+  if (targetColorBtn) {
+    targetColorBtn.addEventListener("click", blockHrefInline) // Prevents CSP error
+    targetColorBtn.click()
+  }
+}
+
 /**
  * Find the element serving as the button for a specific whiteboard tool
  * 

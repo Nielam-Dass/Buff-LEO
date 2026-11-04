@@ -9,3 +9,16 @@ h1 {
 h2 {
   font-size: 2rem;
 }
+
+div.shortcut-list-section {
+  font-size: 1.25rem;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 16px;
+}
+
+ul.shortcut-list {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding-left: 24px;
+}
