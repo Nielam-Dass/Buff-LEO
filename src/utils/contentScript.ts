@@ -4,7 +4,8 @@ import bindings from "./keyBindings"
 if (window.origin === "https://v2.tutor.com" && window.frameElement && window.frameElement.id !== "classroom-frame") {
   // Keydown events from iframes inside the classroom need to be propogated to the parent document
   document.addEventListener("keydown", (e: KeyboardEvent): void => {
-    if (e.ctrlKey && e.shiftKey) {
+    if ((document.activeElement instanceof HTMLElement && !document.activeElement.isContentEditable) || (e.ctrlKey && e.shiftKey)) {
+      // If the active element is not a text field, all keydown events get propogated, otherwise Ctrl+Shift must be presssed
       window.parent.document.dispatchEvent(new KeyboardEvent("keydown", e))
     }
   })
